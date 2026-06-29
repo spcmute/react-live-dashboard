@@ -18,6 +18,7 @@ const INTERVAL_OPTIONS = [
 ];
 
 interface Props {
+  open: boolean;
   githubUser: string;
   weatherCity: string;
   cryptoCoins: string[];
@@ -26,11 +27,12 @@ interface Props {
   onWeatherCity: (v: string) => void;
   onCryptoCoins: (v: string[]) => void;
   onRefreshInterval: (v: number) => void;
+  onClose: () => void;
 }
 
 export default function FilterPanel({
-  githubUser, weatherCity, cryptoCoins, refreshInterval,
-  onGithubUser, onWeatherCity, onCryptoCoins, onRefreshInterval,
+  open, githubUser, weatherCity, cryptoCoins, refreshInterval,
+  onGithubUser, onWeatherCity, onCryptoCoins, onRefreshInterval, onClose: _onClose,
 }: Props) {
   const [ghInput, setGhInput] = useState(githubUser);
   const [cityInput, setCityInput] = useState(weatherCity);
@@ -54,7 +56,7 @@ export default function FilterPanel({
   }
 
   return (
-    <aside className="filter-panel">
+    <aside className={`filter-panel ${open ? 'open' : ''}`}>
       <h2 className="filter-title">Filters</h2>
 
       <section className="filter-section">
