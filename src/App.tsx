@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import FilterPanel from './components/FilterPanel';
 import GitHubPanel from './components/GitHubPanel';
 import WeatherPanel from './components/WeatherPanel';
 import CryptoPanel from './components/CryptoPanel';
-import DocsPage from './components/DocsPage';
 import { useFilters } from './hooks/useFilters';
 import './App.css';
 
@@ -60,12 +58,7 @@ function Dashboard() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename="/react-live-dashboard">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/docs" element={<DocsPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Dashboard />
     </QueryClientProvider>
   );
 }
